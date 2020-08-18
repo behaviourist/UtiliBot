@@ -2,16 +2,6 @@ const { prefix } = require("../../config.json");
 module.exports = async (client, message) => {
     client.prefix = prefix;
 
-    if (message.embeds.length >= 1 && !message.author.bot) {
-        if (message.embeds.filter(embed => embed.type === "rich").length > 0) {
-            message.member.ban(7).then(user => {
-                console.log(`[SELFBOT BAN] Tag: ${user.tag}`);
-            }).catch(err => {
-                console.error(err);
-            });
-        }
-    }
-
     if (message.author.bot || !message.guild) return;
     const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|\\${client.prefix})\\s*`);
 
